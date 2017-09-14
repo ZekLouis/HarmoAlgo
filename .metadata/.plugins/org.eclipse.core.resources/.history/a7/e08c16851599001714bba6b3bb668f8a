@@ -1,0 +1,27 @@
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class JPanelCenter extends JPanel{
+	
+	private CarnetAdresses carnet;
+	
+	public JPanelCenter(CarnetAdresses carnet) {
+		this.carnet = carnet;
+	}
+	
+	public void ajouter() {
+		this.setLayout(new GridLayout(4,2));
+		this.add(new JLabel("Nom"), 0);
+		this.add(new JTextField(), 1);
+		this.add(new JLabel("Prénom"), 2);
+		this.add(new JTextField(), 3);
+		this.add(new JLabel("Adresse"), 4);
+		this.add(new JTextField(), 5);
+		this.add(new JButton("Ajouter"), 6);
+	}
+	
+}

@@ -1,0 +1,68 @@
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class JPanelCenter extends JPanel{
+	
+	private CarnetAdresses carnet;
+	
+	public JPanelCenter(CarnetAdresses carnet) {
+		this.carnet = carnet;
+	}
+	
+	public void ajouter() {
+		this.removeAll();
+		this.setLayout(new GridLayout(4,2));
+		this.add(new JLabel("Nom"), 0);
+		this.add(new JTextField(), 1);
+		this.add(new JLabel("Prénom"), 2);
+		this.add(new JTextField(), 3);
+		this.add(new JLabel("Adresse"), 4);
+		this.add(new JTextField(), 5);
+		this.add(new JButton("Valider"), 6);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void supprimer() {
+		this.removeAll();
+		this.setLayout(new GridLayout(2,2));
+		this.add(new JLabel("Index"), 0);
+		this.add(new JTextField(), 1);
+		this.add(new JButton("Valider"), 6, 2);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void rechercher() {
+		this.removeAll();
+		this.setLayout(new GridLayout(2,2));
+		this.add(new JLabel("Recherche"), 0);
+		this.add(new JTextField(), 1);
+		this.add(new JButton("Valider"), 6, 2);
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void trier() {
+		this.removeAll();
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void charger() {
+		this.removeAll();
+		this.revalidate();
+		this.repaint();
+	}
+	
+	public void sauvegarder() {
+		this.removeAll();
+		this.revalidate();
+		this.repaint();
+	}
+	
+}

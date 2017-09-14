@@ -1,0 +1,11 @@
+import javax.swing.JPanel;
+
+public class JPanelEast extends JPanel{
+	
+	private CarnetAdresses carnet;
+	
+	public JPanelEast(CarnetAdresses carnet) {
+		this.carnet = carnet;
+	}
+	
+}

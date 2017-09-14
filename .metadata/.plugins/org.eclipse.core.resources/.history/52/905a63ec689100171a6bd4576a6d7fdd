@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Personne[] personnes = new Personne[2];
+		Scanner scanner = new Scanner(System.in);
+		
+		for(int i = 0; i<personnes.length; i++) {
+			String prenom = scanner.nextLine();
+			String nom = scanner.nextLine();
+			String adresse = scanner.nextLine();
+			String tel = scanner.nextLine();
+			personnes[i] = new Personne(prenom, nom, adresse, tel);
+		}
+		
+
+	}
+
+}

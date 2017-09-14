@@ -1,0 +1,5 @@
+import java.awt.GridLayout;
+
+public class JPanelEast extends GridLayout{
+
+}

@@ -1,0 +1,31 @@
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class JPanelCarnet extends JPanel{
+	
+	private CarnetAdresses carnet;
+	
+	public JPanelCarnet(CarnetAdresses carnet) {
+		
+		this.carnet = carnet;
+		
+		this.setLayout(new GridLayout(2,3));
+		
+		this.add(new JLabel("Nom"), 0,0);
+		this.add(new JLabel("Prénom"), 0,1);
+		this.add(new JLabel("Adresse"), 0,2);
+		
+		int i = 1;
+		
+		for(Personne personne : carnet.getPersonnes()) {
+			this.add(new JLabel(personne.getNom()), i,0);
+			this.add(new JLabel(personne.getPrenom()), i,1);
+			this.add(new JLabel(personne.getAdresse()), i,2);
+			i++;
+		}
+		
+	}
+
+}

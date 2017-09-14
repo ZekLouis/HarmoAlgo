@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		CarnetAdresses carnet = new CarnetAdresses("CarnetTest");
+		Scanner scanner = new Scanner(System.in);
+		
+		int saisie = 0;
+		do {
+			Main.afficherMenu();
+			saisie = scanner.nextInt();
+			
+			switch(saisie) {
+				case 1:
+					Main.ajouterUneFiche();
+					break;
+					
+				case 2:
+					Main.supprimerUneFiche();
+					break;
+					
+				case 3:
+					Main.rechercherUneFiche();
+					break;
+					
+				case 4:
+					Main.trierLeTableau();
+					break;
+					
+				case 5:
+				default:
+					System.out.println("Bye !");
+					break;
+					
+			}
+			
+		}while(saisie != 5);
+		
+		
+		
+
+	}
+	
+	public static void afficherMenu() {
+		System.out.println("1 - Ajouter une fiche");
+		System.out.println("2 - Supprimer une fiche");
+		System.out.println("3 - Rechercher une fiche");
+		System.out.println("4 - Trier le tableau");
+		System.out.println("5 - Quitter");
+	}
+	
+	public static void ajouterUneFiche() {
+		
+	}
+	
+	public static void supprimerUneFiche() {
+		
+	}
+	
+	public static void rechercherUneFiche() {
+		
+	}
+	
+	public static void trierLeTableau() {
+		
+	}
+
+}

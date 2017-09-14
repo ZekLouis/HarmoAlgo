@@ -1,0 +1,11 @@
+import java.awt.GridLayout;
+
+import javax.swing.JPanel;
+
+public class JPanelWest extends JPanel{
+	
+	public JPanelWest() {
+		this.setLayout(new GridLayout(6,1));
+	}
+
+}

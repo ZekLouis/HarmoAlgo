@@ -1,0 +1,11 @@
+import javax.swing.JPanel;
+
+public class JPanelCenter extends JPanel{
+	
+	private CarnetAdresses carnet;
+	
+	public JPanelCenter(CarnetAdresses carnet) {
+		this.carnet = 
+	}
+	
+}

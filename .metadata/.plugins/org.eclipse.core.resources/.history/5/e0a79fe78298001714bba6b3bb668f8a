@@ -1,0 +1,39 @@
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+public class JPanelWest extends JPanel{
+	
+	private JButton jb_ajouter = new JButton("Ajouter");
+	private JButton jb_supprimer = new JButton("Supprimer");
+	private JButton jb_recherche = new JButton("Rechercher");
+	private JButton jb_charger = new JButton("Charger");
+	private JButton jb_sauvegarder = new JButton("Sauvegarder");
+	private JButton jb_trier = new JButton("Trier");
+	private JButton jb_quitter = new JButton("Quitter");
+	private JLabel jb_titre = new JLabel("Actions",SwingConstants.CENTER);
+	
+	public JPanelWest() {
+		this.setLayout(new GridLayout(8,1));
+		this.add(jb_titre, 0);
+		this.add(jb_ajouter, 1);
+		this.add(jb_supprimer, 2);
+		this.add(jb_recherche, 3);
+		this.add(jb_trier, 4);
+		this.add(jb_charger, 5);
+		this.add(jb_sauvegarder, 6);
+		this.add(jb_quitter, 7);
+		
+		jb_quitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+	        {
+	            System.out.println("2eme !");
+	        }
+		});
+	}
+	
+
+}

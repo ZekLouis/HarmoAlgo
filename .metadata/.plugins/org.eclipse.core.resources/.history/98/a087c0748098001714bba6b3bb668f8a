@@ -1,0 +1,26 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
+public class UI extends JFrame{
+	
+	public UI() {
+		this.setTitle("Carnet d'adresses");
+		this.setSize(800,600);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().add(new JButton("CENTER"), BorderLayout.CENTER);
+	    //Au nord
+	    this.getContentPane().add(new JButton("NORTH"), BorderLayout.NORTH);
+	    //Au sud
+	    this.getContentPane().add(new JButton("SOUTH"), BorderLayout.SOUTH);
+	    //À l'ouest
+	    this.getContentPane().add(new JButton("WEST"), BorderLayout.WEST);
+	    //À l'est
+	    this.getContentPane().add(new JButton("EAST"), BorderLayout.EAST);
+
+		this.setLayout(new BorderLayout());
+	
+		this.setVisible(true);
+	}
+}

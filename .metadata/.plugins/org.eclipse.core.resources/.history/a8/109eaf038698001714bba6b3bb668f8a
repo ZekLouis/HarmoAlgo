@@ -1,0 +1,9 @@
+import javax.swing.JPanel;
+
+public class JPanelCenter extends JPanel{
+	
+	public JPanelCenter(CarnetAdresses carnet) {
+		
+	}
+	
+}

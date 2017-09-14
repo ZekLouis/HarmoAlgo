@@ -1,0 +1,3 @@
+INDEX VERSION 1.130+/Users/louisgaume/eclipse-workspace/.metadata/.plugins/org.eclipse.jdt.core
+1711046846.index
+518727472.index
