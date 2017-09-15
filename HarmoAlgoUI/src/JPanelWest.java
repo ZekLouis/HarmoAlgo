@@ -20,10 +20,12 @@ public class JPanelWest extends JPanel{
 	private JButton jb_quitter = new JButton("Quitter");
 	private JLabel jb_titre = new JLabel("Actions",SwingConstants.CENTER);
 	private JPanelCenter jp_center;
+	private JPanelEast jp_east;
 	
-	public JPanelWest(CarnetAdresses carnet, JPanelCenter jp_center) {
+	public JPanelWest(CarnetAdresses carnet, JPanelCenter jp_center, JPanelEast jp_east) {
 		this.carnet = carnet;
 		this.jp_center = jp_center;
+		this.jp_east = jp_east;
 		
 		this.setLayout(new GridLayout(8,1));
 		this.add(jb_titre, 0);
@@ -51,6 +53,7 @@ public class JPanelWest extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jp_center.ajouter();
+				jp_east.refresh();
 			}
 		});
 		
@@ -58,6 +61,7 @@ public class JPanelWest extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jp_center.supprimer();
+				jp_east.refresh();
 			}
 		});
 		
@@ -65,6 +69,7 @@ public class JPanelWest extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jp_center.rechercher();
+				jp_east.refresh();
 			}
 		});
 		
@@ -72,6 +77,7 @@ public class JPanelWest extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jp_center.trier();
+				jp_east.refresh();
 			}
 		});
 		
@@ -79,6 +85,7 @@ public class JPanelWest extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jp_center.charger();
+				jp_east.refresh();
 			}
 		});
 		
@@ -86,6 +93,7 @@ public class JPanelWest extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				jp_center.sauvegarder();
+				jp_east.refresh();
 			}
 		});
 		

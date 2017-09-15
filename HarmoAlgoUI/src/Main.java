@@ -4,25 +4,21 @@ import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 public class Main {
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		
-		CarnetAdresses carnet = null;
-
+	
+	public static CarnetAdresses carnet;
+	
+	public static CarnetAdresses charger(String filename) {
 		FileInputStream fin = null;
 		ObjectInputStream ois = null;
-		String carnetFile = "carnet.ser";
-		/*
-		 * On charge notre carnet d'adresses depuis le fichier, on le crée s'il n'existe pas
-		 */
+		CarnetAdresses carnet = null;
+		
 		try {
-			fin = new FileInputStream("/tmp/" + carnetFile);
+			fin = new FileInputStream(filename);
 			ois = new ObjectInputStream(fin);
 			carnet = (CarnetAdresses) ois.readObject();
-			System.out.println("Carnet "+ carnet.getNom() + " chargé depuis le fichier : " + carnetFile );
+			// System.out.println("Carnet "+ carnet.getNom() + " chargé depuis le fichier : " + carnetFile );
 		} catch (Exception ex) {
-			System.out.println("Aucun carnet trouvé, création d'un nouveau carnet ...");
+			// System.out.println("Aucun carnet trouvé, création d'un nouveau carnet ...");
 			carnet = new CarnetAdresses("Test");
 		} finally {
 
@@ -41,8 +37,21 @@ public class Main {
 					e.printStackTrace();
 				}
 			}
-
 		}
+		
+		return carnet;
+	}
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		Main.carnet = null;
+
+		String carnetFile = "/tmp/carnet.ser";
+		/*
+		 * On charge notre carnet d'adresses depuis le fichier, on le crée s'il n'existe pas
+		 */
+		Main.carnet = Main.charger(carnetFile);
 		
 		UI ui = new UI(carnet);
 		
@@ -54,23 +63,23 @@ public class Main {
 			
 			switch(saisie) {
 				case "1":
-					Main.ajouterUneFiche(carnet);
+					Main.ajouterUneFiche();
 					break;
 					
 				case "2":
-					Main.supprimerUneFiche(carnet);
+					Main.supprimerUneFiche();
 					break;
 					
 				case "3":
-					Main.rechercherUneFiche(carnet);
+					Main.rechercherUneFiche();
 					break;
 					
 				case "4":
-					Main.trierLeTableau(carnet);
+					Main.trierLeTableau();
 					break;
 					
 				case "6":
-					Main.afficherTableau(carnet);
+					Main.afficherTableau();
 					break;
 					
 				case "5":
@@ -82,7 +91,7 @@ public class Main {
 					
 			}
 			try {
-				carnet.sauvegarder();
+				Main.carnet.sauvegarder();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -106,7 +115,7 @@ public class Main {
 	 * Cette fonction permet de faire la saisie et l'ajout d'une nouvelle fiche
 	 * @param carnet le carnet dans lequel on ajoute la nouvelle personne
 	 */
-	public static void ajouterUneFiche(CarnetAdresses carnet) {
+	public static void ajouterUneFiche() {
 		
 		Scanner scanner = new Scanner(System.in);
 		
@@ -120,15 +129,15 @@ public class Main {
 		String adresse = scanner.nextLine();
 		
 		Personne personne = new Personne(nom, prenom, adresse);
-		carnet.add(personne);	
+		Main.carnet.add(personne);	
 	}
 	
 	/**
 	 * Cette fonction permet de faire saisir l'index et de supprimer une fiche depuis un carnet d'adresses
 	 * @param carnet
 	 */
-	public static void supprimerUneFiche(CarnetAdresses carnet) {
-		if(carnet.isEmpty()) {
+	public static void supprimerUneFiche() {
+		if(Main.carnet.isEmpty()) {
 			System.out.println("Suppression impossible, le carnet est vide");
 		} else {
 			Scanner delScan = new Scanner(System.in);
@@ -136,7 +145,7 @@ public class Main {
 			System.out.println("Saisir l'index de la personne a supprimer :");
 			int index = delScan.nextInt();
 			
-			carnet.remove(index);
+			Main.carnet.remove(index);
 		}
 	}
 	
@@ -144,7 +153,7 @@ public class Main {
 	 * Saisie et recherche dans le carnet d'adresses
 	 * @param carnet
 	 */
-	public static void rechercherUneFiche(CarnetAdresses carnet) {
+	public static void rechercherUneFiche() {
 		if(carnet.isEmpty()) {
 			System.out.println("Recherche impossible, le carnet est vide");
 		} else {
@@ -155,16 +164,16 @@ public class Main {
 		}
 	}
 	
-	public static void trierLeTableau(CarnetAdresses carnet) {
-		if(carnet.isEmpty()) {
+	public static void trierLeTableau() {
+		if(Main.carnet.isEmpty()) {
 			System.out.println("Tri impossible, le carnet est vide.");
 		} else {
-			carnet.tri();
+			Main.carnet.tri();
 		}
 	}
 	
-	public static void afficherTableau(CarnetAdresses carnet) {
-		System.out.println(carnet.toString());
+	public static void afficherTableau() {
+		System.out.println(Main.carnet.toString());
 	}
 
 }
