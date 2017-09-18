@@ -69,9 +69,9 @@ public class CarnetAdresses implements Serializable{
 	public void recherche(String recherche) {
         for (Personne personne : this.personnes) {
             if(personne.getNom().matches("(?i)("+recherche+").*")){
-            		System.out.println("Index : " + this.personnes.indexOf(personne) + " - " + personne.toString());
-            } else if(personne.getNom().matches("(?i)("+recherche+").*")) {
-            		System.out.println("Index : " + this.personnes.indexOf(personne) + " - " + personne.toString());
+        		System.out.println("Index : " + this.personnes.indexOf(personne) + " - " + personne.toString());
+            } else if(personne.getPrenom().matches("(?i)("+recherche+").*")) {
+        		System.out.println("Index : " + this.personnes.indexOf(personne) + " - " + personne.toString());
             }
         }
 	}
