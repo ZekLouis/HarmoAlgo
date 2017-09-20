@@ -94,7 +94,17 @@ public class HomeController {
      *
      * @param person the person or null
      */
-    
+    private void showPersonDetails(Personne personne) {
+        if (personne != null) {
+            prenomLabel.setText(personne.getPrenom());
+            nomLabel.setText(personne.getNom());
+            adresseLabel.setText(personne.getAdresse());
+        } else {
+	        	prenomLabel.setText("Prenom");
+	        	nomLabel.setText("Nom");
+	        	adresseLabel.setText("Adresse");
+        }
+    }
     
     /**
      * Called when the user clicks on the delete button.
