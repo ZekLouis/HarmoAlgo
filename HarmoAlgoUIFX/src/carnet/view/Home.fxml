@@ -136,7 +136,7 @@
                         </GridPane>
                         <Button mnemonicParsing="false" onAction="#handleCharger" text="Charger" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <Button mnemonicParsing="false" onAction="#handleSauvegarder" text="Sauvegarder" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Button mnemonicParsing="false" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                        <Button mnemonicParsing="false" onAction="#handleQuitter" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets bottom="20.0" right="20.0" />
                            </GridPane.margin>

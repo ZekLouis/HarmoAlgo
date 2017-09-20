@@ -2,6 +2,8 @@ package carnet;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Scanner;
 import java.util.prefs.Preferences;
 
 import javax.xml.bind.JAXBContext;
@@ -32,11 +34,8 @@ public class MainApp extends Application {
 
     
     public MainApp() {
-    	// par défaut création d'un nouveau carnet
-    	carnet = new CarnetAdresses("Nouveau carnet", null);
-    	
-    	carnet.personnes.add(new Personne("Gaume", "Louis", "Rue rude"));
-    	carnet.personnes.add(new Personne("Chemartin", "Romain", "Rue du masan"));
+	    	// on creer un nouveau carnet au lancement.
+	    	carnet = new CarnetAdresses("Nouveau carnet", null);
     }
     
     @Override
@@ -54,12 +53,10 @@ public class MainApp extends Application {
      */
     public void initRootLayout() {
         try {
-            // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/Root.fxml"));
             rootLayout = (BorderPane) loader.load();
 
-            // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -73,15 +70,12 @@ public class MainApp extends Application {
      */
     public void showPersonOverview() {
         try {
-            // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/Home.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
 
-            // Set person overview into the center of root layout.
             rootLayout.setCenter(personOverview);
             
-            // Give the controller access to the main app.
             HomeController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
@@ -97,50 +91,6 @@ public class MainApp extends Application {
         return primaryStage;
     }
     
-    /**
-     * Returns the person file preference, i.e. the file that was last opened.
-     * The preference is read from the OS specific registry. If no such
-     * preference can be found, null is returned.
-     * 
-     * @return
-     */
-    public File getPersonFilePath() {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        String filePath = prefs.get("filePath", null);
-        if (filePath != null) {
-            return new File(filePath);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Sets the file path of the currently loaded file. The path is persisted in
-     * the OS specific registry.
-     * 
-     * @param file the file or null to remove the path
-     */
-    public void setPersonFilePath(File file) {
-        Preferences prefs = Preferences.userNodeForPackage(MainApp.class);
-        if (file != null) {
-            prefs.put("filePath", file.getPath());
-
-            // Update the stage title.
-            primaryStage.setTitle("AddressApp - " + file.getName());
-        } else {
-            prefs.remove("filePath");
-
-            // Update the stage title.
-            primaryStage.setTitle("AddressApp");
-        }
-    }
-    
-    /**
-     * Loads person data from the specified file. The current person data will
-     * be replaced.
-     * 
-     * @param file
-     */
     public void loadPersonDataFromFile(File file) {
         try {
             JAXBContext context = JAXBContext
@@ -149,12 +99,10 @@ public class MainApp extends Application {
 
             // Reading XML from the file and unmarshalling.
             PersonnesWrapper wrapper = (PersonnesWrapper) um.unmarshal(file);
-
-            carnet.getPersonnes().clear();
-            carnet.getPersonnes().addAll(wrapper.getPersonnes());
-
-            // Save the file path to the registry.
-            setPersonFilePath(file);
+            
+            carnet.personnes.clear();
+            
+            carnet.personnes.addAll(wrapper.getPersonnes());
 
         } catch (Exception e) { // catches ANY exception
             Alert alert = new Alert(AlertType.ERROR);
@@ -178,16 +126,12 @@ public class MainApp extends Application {
             Marshaller m = context.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            // Wrapping our person data.
             PersonnesWrapper wrapper = new PersonnesWrapper();
-            wrapper.setPersons(carnet.getPersonnes());
-
-            // Marshalling and saving XML to the file.
+            wrapper.setPersonnes(carnet.getPersonnes());
+            
             m.marshal(wrapper, file);
 
-            // Save the file path to the registry.
-            setPersonFilePath(file);
-        } catch (Exception e) { // catches ANY exception
+        } catch (Exception e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Could not save data");
@@ -202,7 +146,6 @@ public class MainApp extends Application {
     }
 
 	public ObservableList<Personne> getPersonnesData() {
-		// TODO Auto-generated method stub
 		return carnet.personnes;
 	}
 	

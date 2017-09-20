@@ -49,7 +49,6 @@ public class HomeController {
     @FXML
     private TextField rechercheField;
 
-    // Reference to the main application.
     private MainApp mainApp;
     
     private boolean okClicked = false;
@@ -68,15 +67,12 @@ public class HomeController {
      */
     @FXML
     private void initialize() {
-        // Initialize the person table with the two columns.
-    	prenomColumn.setCellValueFactory(cellData -> cellData.getValue().getPrenomProperty());
-    	nomColumn.setCellValueFactory(cellData -> cellData.getValue().getNomProperty());
-    	adresseColumn.setCellValueFactory(cellData -> cellData.getValue().getAdresseProperty());
-    	
-    	// Clear person details.
+	    	prenomColumn.setCellValueFactory(cellData -> cellData.getValue().getPrenomProperty());
+	    	nomColumn.setCellValueFactory(cellData -> cellData.getValue().getNomProperty());
+	    	adresseColumn.setCellValueFactory(cellData -> cellData.getValue().getAdresseProperty());
+	    	
         showPersonDetails(null);
 
-        // Listen for selection changes and show the person details when changed.
         personnesTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPersonDetails(newValue));
     }
@@ -89,7 +85,6 @@ public class HomeController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
-        // Add observable list data to the table
         personnesTable.setItems(mainApp.getPersonnesData());
     }
     
@@ -101,18 +96,13 @@ public class HomeController {
      */
     private void showPersonDetails(Personne personne) {
         if (personne != null) {
-            // Fill the labels with info from the person object.
             prenomLabel.setText(personne.getPrenom());
             nomLabel.setText(personne.getNom());
             adresseLabel.setText(personne.getAdresse());
-
-            // TODO: We need a way to convert the birthday into a String!
-            // birthdayLabel.setText(...);
         } else {
-            // Person is null, remove all the text.
-        	prenomLabel.setText("Prénom");
-        	nomLabel.setText("Nom");
-        	adresseLabel.setText("Adresse");
+	        	prenomLabel.setText("Prï¿½nom");
+	        	nomLabel.setText("Nom");
+	        	adresseLabel.setText("Adresse");
         }
     }
     
@@ -124,14 +114,13 @@ public class HomeController {
     	personnesTable.setItems(mainApp.getPersonnesData());
         int selectedIndex = personnesTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-        	personnesTable.getItems().remove(selectedIndex);
+        		personnesTable.getItems().remove(selectedIndex);
         } else {
-            // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucune sélection");
-            alert.setContentText("Merci de sélectionner une personne de la liste.");
+            alert.setTitle("Aucune sï¿½lection");
+            alert.setHeaderText("Aucune sï¿½lection");
+            alert.setContentText("Merci de sï¿½lectionner une personne de la liste.");
 
             alert.showAndWait();
         }
@@ -139,66 +128,74 @@ public class HomeController {
     
     @FXML
     private void handleRecherche() {
-    	personnesTable.setItems(mainApp.getPersonnesData());
-    	String recherche = rechercheField.getText();
-    	System.out.println(recherche);
-    	if(recherche == null || recherche == "") {
-    		Alert alert = new Alert(AlertType.ERROR);
+	    	personnesTable.setItems(mainApp.getPersonnesData());
+	    	String recherche = rechercheField.getText();
+	    	System.out.println(recherche);
+	    	if(recherche == null || recherche == "") {
+	    		Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Champs non valides");
-            alert.setContentText("La recherche ne peut pas être vide");
+            alert.setContentText("La recherche ne peut pas ï¿½tre vide");
             alert.showAndWait();
-            
-    	} else {
-    		ObservableList<Personne> recherchePersonnes = FXCollections.observableArrayList();
-        	for(Personne personne : mainApp.getPersonnesData()) {
-        		if(personne.getNom().matches("(?i)("+recherche+").*")){
-            		System.out.println("Index : " + mainApp.getPersonnesData().indexOf(personne) + " - " + personne.toString());
-            		recherchePersonnes.add(personne);
-        		} else if(personne.getPrenom().matches("(?i)("+recherche+").*")) {
-            		System.out.println("Index : " + mainApp.getPersonnesData().indexOf(personne) + " - " + personne.toString());
-            		recherchePersonnes.add(personne);
-    	        }
-        	}
-    		personnesTable.setItems(recherchePersonnes);
-    	}
+	    	} else {
+	    		ObservableList<Personne> recherchePersonnes = FXCollections.observableArrayList();
+	        	for(Personne personne : mainApp.getPersonnesData()) {
+	        		if(personne.getNom().matches("(?i)("+recherche+").*")){
+	            		System.out.println("Index : " + mainApp.getPersonnesData().indexOf(personne) + " - " + personne.toString());
+	            		recherchePersonnes.add(personne);
+	        		} else if(personne.getPrenom().matches("(?i)("+recherche+").*")) {
+	            		System.out.println("Index : " + mainApp.getPersonnesData().indexOf(personne) + " - " + personne.toString());
+	            		recherchePersonnes.add(personne);
+	    	        }
+	        	}
+	    		personnesTable.setItems(recherchePersonnes);
+	    	}
     }
     
     @FXML
     private void handleReset() {
-    	personnesTable.setItems(mainApp.getPersonnesData());
+    		personnesTable.setItems(mainApp.getPersonnesData());
     }
     
+
+    /**
+     * Opens a FileChooser to let the user select an address book to load.
+     */
     @FXML
     private void handleCharger() {
-    	
-    	FileChooser fileChooser = new FileChooser();
-    	FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Fichier XML (*.xml)", "*.xml");
-    	fileChooser.getExtensionFilters().add(filter);
-    	fileChooser.setTitle("Ouvrir un carnet");
-    	File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
-    	
-    	if( file != null ) {
-    		mainApp.loadPersonDataFromFile(file);
-    	}
+        FileChooser fileChooser = new FileChooser();
 
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+
+        if (file != null) {
+            mainApp.loadPersonDataFromFile(file);
+            mainApp.setNomFenetre(file.getName());
+        }
     }
     
     @FXML
     public void handleSauvegarder() {
-    	FileChooser fileChooser = new FileChooser();
-    	FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Fichier XML (*.xml)", "*.xml");
-    	fileChooser.getExtensionFilters().add(filter);
-    	fileChooser.setTitle("Sauvegarder un carnet");
-    	File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+	    	FileChooser fileChooser = new FileChooser();
+	    	FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Fichier XML (*.xml)", "*.xml");
+	    	fileChooser.getExtensionFilters().add(filter);
+	    	fileChooser.setTitle("Sauvegarder un carnet");
+	    	File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+	    	
+	    	if( file != null ) {
+	            if (!file.getPath().endsWith(".xml")) {
+	                file = new File(file.getPath() + ".xml");
+	            }
+	            mainApp.savePersonDataToFile(file);
+	            mainApp.setNomFenetre(file.getName());
+	    	}
     	
-    	if( file != null ) {
-            // Make sure it has the correct extension
-            if (!file.getPath().endsWith(".xml")) {
-                file = new File(file.getPath() + ".xml");
-            }
-            mainApp.savePersonDataToFile(file);
-    	}
-    	
+    }
+    
+    @FXML
+    public void handleQuitter() {
+    		System.exit(0);
     }
     
     /**
@@ -215,7 +212,7 @@ public class HomeController {
      */
     @FXML
     private void handleAjouter() {
-    	personnesTable.setItems(mainApp.getPersonnesData());
+    		personnesTable.setItems(mainApp.getPersonnesData());
         if (isInputValid()) {
         	
         	Personne personne = new Personne(nomField.getText(), prenomField.getText(), adresseField.getText());
@@ -231,8 +228,8 @@ public class HomeController {
     
     @FXML
     private void handleTrier() {
-    	personnesTable.setItems(mainApp.getPersonnesData());
-    	mainApp.getPersonnesData().sort(c);
+	    	personnesTable.setItems(mainApp.getPersonnesData());
+	    	mainApp.getPersonnesData().sort(c);
     }
     
     /**
@@ -247,7 +244,7 @@ public class HomeController {
             errorMessage += "Le champ nom n'est pas valide!\n";
         }
         if (prenomField.getText() == null || prenomField.getText().length() == 0) {
-            errorMessage += "Le champ prénom n'est pas valide!\n";
+            errorMessage += "Le champ prï¿½nom n'est pas valide!\n";
         }
         if (adresseField.getText() == null || adresseField.getText().length() == 0) {
             errorMessage += "La champ adresse n'est pas valide!\n";
@@ -255,8 +252,7 @@ public class HomeController {
 
         if (errorMessage.length() == 0) {
             return true;
-        } else {        	
-            // Show the error message.
+        } else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Champs non valides");
             alert.setHeaderText("Veuillez corriger ces champs : ");

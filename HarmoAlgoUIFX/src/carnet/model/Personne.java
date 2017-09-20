@@ -2,6 +2,8 @@ package carnet.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -9,13 +11,17 @@ public class Personne implements Serializable{
 	private StringProperty nom;
 	private StringProperty prenom;
 	private StringProperty adresse;
+	
+	public Personne() {
+		this(null, null, null);
+	}
 
 	public Personne(String nom, String prenom, String adresse) {
 		this.nom = new SimpleStringProperty(nom);
 		this.prenom = new SimpleStringProperty(prenom);
 		this.adresse = new SimpleStringProperty(adresse);
 	}
-
+	
 	public String getNom() {
 		return nom.get();
 	}
@@ -27,7 +33,7 @@ public class Personne implements Serializable{
 	public void setNom(String nom) {
 		this.nom.set(nom);
 	}
-
+	
 	public String getPrenom() {
 		return prenom.get();
 	}
