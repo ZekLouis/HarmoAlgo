@@ -94,33 +94,23 @@ public class HomeController {
      *
      * @param person the person or null
      */
-    private void showPersonDetails(Personne personne) {
-        if (personne != null) {
-            prenomLabel.setText(personne.getPrenom());
-            nomLabel.setText(personne.getNom());
-            adresseLabel.setText(personne.getAdresse());
-        } else {
-	        	prenomLabel.setText("Pr�nom");
-	        	nomLabel.setText("Nom");
-	        	adresseLabel.setText("Adresse");
-        }
-    }
+    
     
     /**
      * Called when the user clicks on the delete button.
      */
     @FXML
     private void handleDeletePerson() {
-    	personnesTable.setItems(mainApp.getPersonnesData());
+    		personnesTable.setItems(mainApp.getPersonnesData());
         int selectedIndex = personnesTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
         		personnesTable.getItems().remove(selectedIndex);
         } else {
             Alert alert = new Alert(AlertType.WARNING);
             alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("Aucune s�lection");
-            alert.setHeaderText("Aucune s�lection");
-            alert.setContentText("Merci de s�lectionner une personne de la liste.");
+            alert.setTitle("Aucune selection");
+            alert.setHeaderText("Aucune selection");
+            alert.setContentText("Merci de selectionner une personne de la liste.");
 
             alert.showAndWait();
         }
@@ -130,20 +120,17 @@ public class HomeController {
     private void handleRecherche() {
 	    	personnesTable.setItems(mainApp.getPersonnesData());
 	    	String recherche = rechercheField.getText();
-	    	System.out.println(recherche);
 	    	if(recherche == null || recherche == "") {
 	    		Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Champs non valides");
-            alert.setContentText("La recherche ne peut pas �tre vide");
+            alert.setContentText("La recherche ne peut pas etre vide");
             alert.showAndWait();
 	    	} else {
 	    		ObservableList<Personne> recherchePersonnes = FXCollections.observableArrayList();
 	        	for(Personne personne : mainApp.getPersonnesData()) {
 	        		if(personne.getNom().matches("(?i)("+recherche+").*")){
-	            		System.out.println("Index : " + mainApp.getPersonnesData().indexOf(personne) + " - " + personne.toString());
 	            		recherchePersonnes.add(personne);
 	        		} else if(personne.getPrenom().matches("(?i)("+recherche+").*")) {
-	            		System.out.println("Index : " + mainApp.getPersonnesData().indexOf(personne) + " - " + personne.toString());
 	            		recherchePersonnes.add(personne);
 	    	        }
 	        	}
