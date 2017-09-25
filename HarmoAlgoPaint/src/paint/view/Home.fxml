@@ -51,7 +51,7 @@
                           <content>
                             <AnchorPane fx:id="anchorPaneViewParent" minHeight="0.0" minWidth="0.0" prefHeight="538.0" prefWidth="796.0">
                                  <children>
-                                    <ImageView fx:id="imageView" fitHeight="496.0" fitWidth="709.0" layoutX="41.0" layoutY="13.0" onDragEntered="#handleDragEntered" onDragExited="#handleDragExited" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="imageView" fitHeight="496.0" fitWidth="709.0" layoutX="41.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </AnchorPane>
                           </content>
