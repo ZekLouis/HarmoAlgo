@@ -126,16 +126,14 @@ public class HomeController {
             
             // reset color effect
             if(imageView.getEffect() == null) {
-        			grayscale = new ColorAdjust();
-	    		} else {
-	    			grayscale = (ColorAdjust) imageView.getEffect();
-	    		}
-	    		
-    			grayscale.setSaturation(0.0);
-	    		
+    			grayscale = new ColorAdjust();
+    		} else {
+    			grayscale = (ColorAdjust) imageView.getEffect();
+    		}
+    		
+			grayscale.setSaturation(0.0);
+    		
 	        imageView.setEffect(grayscale);
-	        
-	        this.initDrawEvents2();
         }
     }
     
@@ -157,9 +155,9 @@ public class HomeController {
     
     @FXML
     private void handleResetZoom() {
-    		imageView.setScaleX(1);
+		imageView.setScaleX(1);
 		imageView.setScaleY(1);
-    		imageView.setFitHeight(scrollPane.getHeight());
+		imageView.setFitHeight(scrollPane.getHeight());
         imageView.setFitWidth(scrollPane.getWidth());
         imageView.setPreserveRatio(true);
     }
