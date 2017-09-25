@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.2639198218262806" layoutX="-25.0" layoutY="85.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="298.0">
+               <children>
+                  <TableView layoutX="-26.0" layoutY="42.0" prefHeight="398.0" prefWidth="264.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Nom" />
+                      <TableColumn prefWidth="75.0" text="Prénom" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <ButtonBar layoutX="-30.0" layoutY="398.0" prefHeight="48.0" prefWidth="213.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="400.0">
+                    <buttons>
+                      <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="190.0" text="Importer" />
+                        <Button mnemonicParsing="false" prefHeight="27.0" text="Ajouter" />
+                    </buttons>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+            </AnchorPane>
+          <AnchorPane>
+               <children>
+                  <Label layoutX="-8.0" layoutY="14.0" prefHeight="65.0" prefWidth="665.0" text="DETAILS DU CONTACT" textOverrun="CLIP" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </Label>
+                  <GridPane layoutY="68.0" prefHeight="180.0" prefWidth="657.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="4.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Prénom" textFill="#bcbcbc" />
+                        <Label text="Nom" textFill="#bcbcbc" GridPane.rowIndex="1" />
+                        <Label text="Numéro de Téléphone" textFill="#bcbcbc" GridPane.rowIndex="2" />
+                        <Label text="..." GridPane.columnIndex="1" />
+                        <Label text="..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </GridPane>
+                  <ButtonBar layoutX="-8.0" layoutY="398.0" prefHeight="57.0" prefWidth="665.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-8.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="398.0">
+                    <buttons>
+                      <Button mnemonicParsing="false" text="Modifier" />
+                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="106.0" text="Supprimer" />
+                    </buttons>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

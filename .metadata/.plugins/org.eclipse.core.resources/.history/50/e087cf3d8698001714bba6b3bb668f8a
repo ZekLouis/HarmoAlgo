@@ -1,9 +1,0 @@
-import javax.swing.JPanel;
-
-public class JPanelEast extends JPanel{
-	
-	public JPanelEast(CarnetAdresses carnet) {
-		
-	}
-	
-}

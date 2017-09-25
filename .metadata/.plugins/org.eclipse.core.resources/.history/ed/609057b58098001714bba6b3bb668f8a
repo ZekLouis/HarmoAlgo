@@ -1,5 +1,0 @@
-import java.awt.GridLayout;
-
-public class JPanelWest extends GridLayout{
-
-}

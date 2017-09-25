@@ -28,4 +28,8 @@
 <fullyQualifiedTypeName name="carnet.model.PersonneAdapter"/>
 <fullyQualifiedTypeName name="java.nio.file.Files"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="javafx.scene.image.ImageView"/>
+<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<fullyQualifiedTypeName name="javafx.scene.control.ScrollPane"/>
+<fullyQualifiedTypeName name="javafx.scene.effect.ColorAdjust"/>
 </qualifiedTypeNameHistroy>

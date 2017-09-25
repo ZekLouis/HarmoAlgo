@@ -1,7 +1,0 @@
-import javax.swing.JFrame;
-
-public class UI extends JFrame{
-	public UI() {
-		this.setVisible(true);
-	}
-}

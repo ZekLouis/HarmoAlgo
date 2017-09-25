@@ -91,55 +91,55 @@ public class MainApp extends Application {
         return primaryStage;
     }
     
-    public void loadPersonDataFromFile(File file) {
-        try {
-            JAXBContext context = JAXBContext
-                    .newInstance(PersonnesWrapper.class);
-            Unmarshaller um = context.createUnmarshaller();
-
-            // Reading XML from the file and unmarshalling.
-            PersonnesWrapper wrapper = (PersonnesWrapper) um.unmarshal(file);
-            
-            carnet.personnes.clear();
-            
-            carnet.personnes.addAll(wrapper.getPersonnes());
-
-        } catch (Exception e) { // catches ANY exception
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Could not load data");
-            alert.setContentText("Could not load data from file:\n" + file.getPath());
-
-            alert.showAndWait();
-        }
-    }
+	public void loadPersonDataFromFile(File file) {
+	    try {
+	        JAXBContext context = JAXBContext
+	                .newInstance(PersonnesWrapper.class);
+	        Unmarshaller um = context.createUnmarshaller();
+	
+	        // Reading XML from the file and unmarshalling.
+	        PersonnesWrapper wrapper = (PersonnesWrapper) um.unmarshal(file);
+	        
+	        carnet.personnes.clear();
+	        
+	        carnet.personnes.addAll(wrapper.getPersonnes());
+	
+	    } catch (Exception e) { // catches ANY exception
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Error");
+	        alert.setHeaderText("Could not load data");
+	        alert.setContentText("Could not load data from file:\n" + file.getPath());
+	
+	        alert.showAndWait();
+	    }
+	}
 
     /**
      * Saves the current person data to the specified file.
      * 
      * @param file
      */
-    public void savePersonDataToFile(File file) {
-        try {
-            JAXBContext context = JAXBContext
-                    .newInstance(PersonnesWrapper.class);
-            Marshaller m = context.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            PersonnesWrapper wrapper = new PersonnesWrapper();
-            wrapper.setPersonnes(carnet.getPersonnes());
-            
-            m.marshal(wrapper, file);
-
-        } catch (Exception e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Could not save data");
-            alert.setContentText("Could not save data to file:\n" + file.getPath());
-
-            alert.showAndWait();
-        }
-    }
+	public void savePersonDataToFile(File file) {
+	    try {
+	        JAXBContext context = JAXBContext
+	                .newInstance(PersonnesWrapper.class);
+	        Marshaller m = context.createMarshaller();
+	        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+	
+	        PersonnesWrapper wrapper = new PersonnesWrapper();
+	        wrapper.setPersonnes(carnet.getPersonnes());
+	        
+	        m.marshal(wrapper, file);
+	
+	    } catch (Exception e) {
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Error");
+	        alert.setHeaderText("Could not save data");
+	        alert.setContentText("Could not save data to file:\n" + file.getPath());
+	
+	        alert.showAndWait();
+	    }
+	}
 
     public static void main(String[] args) {
         launch(args);

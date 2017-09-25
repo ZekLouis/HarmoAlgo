@@ -22,9 +22,23 @@
 		</list>
 	</section>
 	<section name="NewWizardAction">
-		<item value="org.eclipse.fx.ide.fxml.wizard1" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<item value="org.eclipse.fx.ide.jdt.ui.javafx" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.fx.ide"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.e4.ui.importer.wizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.egit.ui.internal.clone.gitclonecategory"/>
+			<item value="org.eclipse.buildship.ui.importwizards"/>
+			<item value="org.eclipse.equinox.p2.category"/>
+			<item value="org.eclipse.m2e"/>
+			<item value="org.eclipse.oomph.importWizards"/>
+			<item value="org.eclipse.pde.ui.PluginDevelopment"/>
+			<item value="org.eclipse.debug.ui"/>
+			<item value="org.eclipse.team.ui.importWizards"/>
 		</list>
 	</section>
 </section>
