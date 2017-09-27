@@ -51,7 +51,7 @@ public class HomeController {
     
     private boolean okClicked = false;
 
-    final DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
+    DoubleProperty zoomProperty = new SimpleDoubleProperty(200);
     
     private ColorAdjust grayscale;
     
@@ -139,50 +139,79 @@ public class HomeController {
     
     @FXML
     public void handleBlackAndWhite() {
-		if(imageView.getEffect() == null) {
-    		grayscale = new ColorAdjust();
-		} else {
-			grayscale = (ColorAdjust) imageView.getEffect();
-		}
-		
-		if (grayscale.getSaturation() == 0.0) {
-			grayscale.setSaturation(-1.0);
-		} else {
-			grayscale.setSaturation(0.0);
-		}
-        imageView.setEffect(grayscale);
+    	if (imageView.getImage() == null) {
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Erreur");
+	        alert.setHeaderText("Aucune image");
+	        alert.setContentText("Action impossible, aucune image n'est ouverte.");
+	
+	        alert.showAndWait();
+    	} else {
+    		if(imageView.getEffect() == null) {
+        		grayscale = new ColorAdjust();
+    		} else {
+    			grayscale = (ColorAdjust) imageView.getEffect();
+    		}
+    		
+    		if (grayscale.getSaturation() == 0.0) {
+    			grayscale.setSaturation(-1.0);
+    		} else {
+    			grayscale.setSaturation(0.0);
+    		}
+            imageView.setEffect(grayscale);
+    	}
     }
     
     @FXML
     private void handleResetZoom() {
-		imageView.setScaleX(1);
-		imageView.setScaleY(1);
-		imageView.setFitHeight(scrollPane.getHeight());
-        imageView.setFitWidth(scrollPane.getWidth());
-        imageView.setPreserveRatio(true);
+    	if (imageView.getImage() == null) {
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Erreur");
+	        alert.setHeaderText("Aucune image");
+	        alert.setContentText("Action impossible, aucune image n'est ouverte.");
+	
+	        alert.showAndWait();
+    	} else {
+    		imageView.setScaleX(1);
+    		imageView.setScaleY(1);
+    		imageView.setFitHeight(scrollPane.getHeight());
+            imageView.setFitWidth(scrollPane.getWidth());
+            imageView.setPreserveRatio(true);
+            zoomProperty.set(200);
+    	}
     }
     
     @FXML
     private void handleSave() {
-    	FileChooser fileChooser = new FileChooser();
-    	fileChooser.setInitialFileName(fileName);
-    	fileChooser.setTitle("Sauvegarder l'image");
-    	FileChooser.ExtensionFilter extFilterJpg = new FileChooser.ExtensionFilter("Images (*.jpg)", "*.jpg");
-        fileChooser.getExtensionFilters().add(extFilterJpg);
-        
-        FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("Images (*.png)", "*.png");
-        fileChooser.getExtensionFilters().add(extFilterPng);
-        
-        FileChooser.ExtensionFilter extFilterJpeg = new FileChooser.ExtensionFilter("Images (*.jpeg)", "*.jpeg");
-        fileChooser.getExtensionFilters().add(extFilterJpeg);
-    	File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
-    	Image image = imageView.snapshot(null, null);
-	    	
-    	try {
-			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    	if (imageView.getImage() == null) {
+	        Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Erreur");
+	        alert.setHeaderText("Aucune image");
+	        alert.setContentText("Action impossible, aucune image n'est ouverte.");
+	
+	        alert.showAndWait();
+    	} else {
+        	FileChooser fileChooser = new FileChooser();
+        	fileChooser.setInitialFileName(fileName);
+        	fileChooser.setTitle("Sauvegarder l'image");
+        	FileChooser.ExtensionFilter extFilterJpg = new FileChooser.ExtensionFilter("Images (*.jpg)", "*.jpg");
+            fileChooser.getExtensionFilters().add(extFilterJpg);
+            
+            FileChooser.ExtensionFilter extFilterPng = new FileChooser.ExtensionFilter("Images (*.png)", "*.png");
+            fileChooser.getExtensionFilters().add(extFilterPng);
+            
+            FileChooser.ExtensionFilter extFilterJpeg = new FileChooser.ExtensionFilter("Images (*.jpeg)", "*.jpeg");
+            fileChooser.getExtensionFilters().add(extFilterJpeg);
+        	File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+        	Image image = imageView.snapshot(null, null);
+    	    	
+        	try {
+    			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+    	}
+
     }
 
     /**
